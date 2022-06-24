@@ -2873,16 +2873,22 @@ try {
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactDom = require("react-dom");
 var _app = require("./App");
-const root = (0, _reactDom.createRoot)(document.body);
-root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _app.App), {}, void 0, false, {
-    fileName: "src/index.tsx",
-    lineNumber: 4,
-    columnNumber: 13
-}, undefined));
 const initTg = ()=>{
     if (!window.Telegram?.WebApp) return;
     const tg = window.Telegram.WebApp;
+    tg.expand();
+    tg.sendData("TEXTS");
+    tg.MainButton.text = "Test!";
+    tg.MainButton.enable();
+    tg.MainButton.show();
 };
+const root = (0, _reactDom.createRoot)(document.body);
+root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _app.App), {}, void 0, false, {
+    fileName: "src/index.tsx",
+    lineNumber: 18,
+    columnNumber: 13
+}, undefined));
+initTg();
 
   $parcel$ReactRefreshHelpers$2a8f.postlude(module);
 } finally {
