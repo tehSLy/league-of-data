@@ -2894,6 +2894,8 @@ root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _app.App), {}, void 0, 
     columnNumber: 13
 }, undefined));
 initTg();
+window.gqlClient = (0, _gqlClient.gqlClient);
+window.GetSummonerByNameDocument = (0, _graphql.GetSummonerByNameDocument);
 
   $parcel$ReactRefreshHelpers$2a8f.postlude(module);
 } finally {
