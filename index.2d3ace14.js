@@ -2874,6 +2874,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactDom = require("react-dom");
 var _app = require("./App");
 const initTg = ()=>{
+    console.log("Initializing TG");
     if (!window.Telegram?.WebApp) return;
     const tg = window.Telegram.WebApp;
     tg.expand();
@@ -2881,11 +2882,12 @@ const initTg = ()=>{
     tg.MainButton.text = "Test!";
     tg.MainButton.enable();
     tg.MainButton.show();
+    console.log("Initialized");
 };
 const root = (0, _reactDom.createRoot)(document.body);
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _app.App), {}, void 0, false, {
     fileName: "src/index.tsx",
-    lineNumber: 18,
+    lineNumber: 21,
     columnNumber: 13
 }, undefined));
 initTg();
