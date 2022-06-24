@@ -2882,12 +2882,15 @@ const initTg = ()=>{
     tg.MainButton.text = "Test!";
     tg.MainButton.enable();
     tg.MainButton.show();
+    tg.MainButton.onClick(()=>{
+        tg.sendData("Clicked!");
+    });
     console.log("Initialized");
 };
 const root = (0, _reactDom.createRoot)(document.body);
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _app.App), {}, void 0, false, {
     fileName: "src/index.tsx",
-    lineNumber: 21,
+    lineNumber: 24,
     columnNumber: 13
 }, undefined));
 initTg();
