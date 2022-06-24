@@ -1,0 +1,369 @@
+type Query {
+  dummy(foo: String): String!
+  getCurrentMatchBySummonerID(ID: String!): MatchData
+  getPlayerAnalysisByID(ID: String!): PlayerAnalisys
+  getAccountByPUUID(puuid: String!): AccountDto
+  getAccountByRiotID(riotID: String!): AccountDto
+  getActiveShard(game: String!, puuid: String!): ActiveShardDto
+  getMyAccount: AccountDto
+  getAllMasteriesBySummonerID(summonerID: String!): [ChampionMasteryDto!]!
+  getChampionMasteryBySummonerID(summonerID: String!, championID: String!): ChampionMasteryDto
+  getTotalMasteryPointsBySummonerID: Int!
+  getLeagueEntryBySummonerID(ID: String!): [LeagueEntryDTO!]!
+  getMatchIDsByPUUID(puuid: String!): [String!]!
+  getMatchByID(matchID: String!): MatchDto
+  getActiveGameBySummonerID(summonerID: String!): CurrentGameInfo
+  getActiveGameBySummonerName(name: String!): CurrentGameInfo
+  getSummonerByAccountID(encryptedAccountId: String!): SummonerDTO
+  getSummonerByName(name: String!): SummonerDTO
+  getSummonerByID(ID: String!): SummonerDTO
+}
+
+type MatchData {
+  participants: [[PlayerAnalisys!]!]!
+}
+
+type PlayerAnalisys {
+  name: String!
+  ID: String!
+  history: [String!]!
+  createdAt: String!
+  tags: [String!]!
+  rank: String!
+  masteriesChart: [MasteryData!]!
+  WR: Int!
+  banChart: [BanRate!]!
+  playedWith: [String!]!
+  matchupChart: [MatchupData!]!
+  totalGames: Int!
+  level: Int!
+}
+
+type MasteryData {
+  championID: String!
+  level: Int!
+  points: Int!
+}
+
+type BanRate {
+  championID: String!
+  percentage: Int!
+}
+
+type MatchupData {
+  WR: Int!
+  withChampionID: Int!
+  againstChampionID: Int!
+  played: Int!
+}
+
+type AccountDto {
+  name: String!
+}
+
+type ActiveShardDto {
+  name: String!
+}
+
+type ChampionMasteryDto {
+  championPointsUntilNextLevel: Float!
+  chestGranted: Boolean!
+  championId: Float!
+  lastPlayTime: Float!
+  championLevel: Int!
+  summonerId: String!
+  championPoints: Int!
+  championPointsSinceLastLevel: Float!
+  tokensEarned: Int!
+}
+
+enum Rank {
+  UNRANKED
+  IRON
+  BRONZE
+  SILVER
+  GOLD
+  PLATINUM
+  DIAMOND
+  MASTER
+  GRANDMASTER
+  CHALLENGER
+}
+
+enum QueueType {
+  RANKED_SOLO_5x5
+  RANKED_TEAM_5x5
+}
+
+type LeagueEntryDTO {
+  leagueId: String!
+  summonerId: String!
+  summonerName: String!
+  queueType: QueueType!
+  tier: String!
+  rank: Rank!
+  leaguePoints: Int!
+  wins: Int!
+  losses: Int!
+  hotStreak: Boolean!
+  veteran: Boolean!
+  freshBlood: Boolean!
+  inactive: Boolean!
+  miniSeries: MiniSeriesDTO!
+}
+
+type MiniSeriesDTO {
+  losses: Int!
+  progress: String!
+  target: Int!
+  wins: Int!
+}
+
+type MatchDto {
+  metadata: MetadataDto
+  info: InfoDto
+}
+
+type MetadataDto {
+  dataVersion: String
+  matchId: String
+  participants: [String!]
+}
+
+type InfoDto {
+  gameCreation: Float!
+  gameDuration: Float!
+  gameEndTimestamp: Float!
+  gameId: Float!
+  gameMode: String!
+  gameName: String!
+  gameStartTimestamp: Float!
+  gameType: String!
+  gameVersion: String!
+  mapId: Int!
+  participants: [ParticipantDto!]!
+  platformId: String!
+  queueId: Int!
+  teams: [TeamDto!]!
+  tournamentCode: String!
+}
+
+type ParticipantDto {
+  assists: Int!
+  baronKills: Int!
+  bountyLevel: Int!
+  champExperience: Int!
+  champLevel: Int!
+  championId: Int!
+  championName: String!
+  championTransform: Int!
+  consumablesPurchased: Int!
+  damageDealtToBuildings: Int!
+  damageDealtToObjectives: Int!
+  damageDealtToTurrets: Int!
+  damageSelfMitigated: Int!
+  deaths: Int!
+  detectorWardsPlaced: Int!
+  doubleKills: Int!
+  dragonKills: Int!
+  firstBloodAssist: Boolean!
+  firstBloodKill: Boolean!
+  firstTowerAssist: Boolean!
+  firstTowerKill: Boolean!
+  gameEndedInEarlySurrender: Boolean!
+  gameEndedInSurrender: Boolean!
+  goldEarned: Int!
+  goldSpent: Int!
+  individualPosition: String!
+  inhibitorKills: Int!
+  inhibitorTakedowns: Int!
+  inhibitorsLost: Int!
+  item0: Int!
+  item1: Int!
+  item2: Int!
+  item3: Int!
+  item4: Int!
+  item5: Int!
+  item6: Int!
+  itemsPurchased: Int!
+  killingSprees: Int!
+  kills: Int!
+  lane: String!
+  largestCriticalStrike: Int!
+  largestKillingSpree: Int!
+  largestMultiKill: Int!
+  longestTimeSpentLiving: Int!
+  magicDamageDealt: Int!
+  magicDamageDealtToChampions: Int!
+  magicDamageTaken: Int!
+  neutralMinionsKilled: Int!
+  nexusKills: Int!
+  nexusTakedowns: Int!
+  nexusLost: Int!
+  objectivesStolen: Int!
+  objectivesStolenAssists: Int!
+  participantId: Int!
+  pentaKills: Int!
+  perks: PerksDto
+  physicalDamageDealt: Int!
+  physicalDamageDealtToChampions: Int!
+  physicalDamageTaken: Int!
+  profileIcon: Int!
+  puuid: String!
+  quadraKills: Int!
+  riotIdName: String!
+  riotIdTagline: String!
+  role: String!
+  sightWardsBoughtInGame: Int!
+  spell1Casts: Int!
+  spell2Casts: Int!
+  spell3Casts: Int!
+  spell4Casts: Int!
+  summoner1Casts: Int!
+  summoner1Id: Int!
+  summoner2Casts: Int!
+  summoner2Id: Int!
+  summonerId: String!
+  summonerLevel: Int!
+  summonerName: String!
+  teamEarlySurrendered: Boolean!
+  teamId: Int!
+  teamPosition: String!
+  timeCCingOthers: Int!
+  timePlayed: Int!
+  totalDamageDealt: Int!
+  totalDamageDealtToChampions: Int!
+  totalDamageShieldedOnTeammates: Int!
+  totalDamageTaken: Int!
+  totalHeal: Int!
+  totalHealsOnTeammates: Int!
+  totalMinionsKilled: Int!
+  totalTimeCCDealt: Int!
+  totalTimeSpentDead: Int!
+  totalUnitsHealed: Int!
+  tripleKills: Int!
+  trueDamageDealt: Int!
+  trueDamageDealtToChampions: Int!
+  trueDamageTaken: Int!
+  turretKills: Int!
+  turretTakedowns: Int!
+  turretsLost: Int!
+  unrealKills: Int!
+  visionScore: Int!
+  visionWardsBoughtInGame: Int!
+  wardsKilled: Int!
+  wardsPlaced: Int!
+  win: Boolean!
+}
+
+type PerksDto {
+  statPerks: PerkStatsDto
+  styles: [PerkStyleDto!]!
+}
+
+type PerkStatsDto {
+  defense: Int!
+  flex: Int!
+  offense: Int!
+}
+
+type PerkStyleDto {
+  description: String!
+  selections: [PerkStyleSelectionDto!]!
+  style: Int!
+}
+
+type PerkStyleSelectionDto {
+  perk: Int!
+  var1: Int!
+  var2: Int!
+  var3: Int!
+}
+
+type TeamDto {
+  bans: [BanDto!]!
+  objectives: ObjectivesDto
+  teamId: Int!
+  win: Boolean!
+}
+
+type BanDto {
+  championId: Int!
+  pickTurn: Int!
+}
+
+type ObjectivesDto {
+  baron: ObjectiveDto
+  champion: ObjectiveDto
+  dragon: ObjectiveDto
+  inhibitor: ObjectiveDto
+  riftHerald: ObjectiveDto
+  tower: ObjectiveDto
+}
+
+type ObjectiveDto {
+  first: Boolean!
+  kills: Int
+}
+
+type CurrentGameInfo {
+  gameId: Float!
+  gameType: String!
+  gameStartTime: Float!
+  mapId: Float!
+  gameLength: Float!
+  platformId: String!
+  gameMode: String!
+  bannedChampions: [BannedChampion!]!
+  gameQueueConfigId: Float!
+  observers: Observer
+  participants: [CurrentGameParticipant!]!
+}
+
+type BannedChampion {
+  pickTurn: Int!
+  championId: Float!
+  teamId: Float!
+}
+
+type Observer {
+  encryptionKey: String!
+}
+
+type CurrentGameParticipant {
+  championId: Float!
+  perks: Perks
+  profileIconId: Float!
+  bot: Boolean!
+  teamId: Float!
+  summonerName: String!
+  summonerId: String!
+  spell1Id: Float!
+  spell2Id: Float!
+  gameCustomizationObjects: [GameCustomizationObject!]!
+}
+
+type Perks {
+  perkIds: [Float!]!
+  perkStyle: Float!
+  perkSubStyle: Float!
+}
+
+type GameCustomizationObject {
+  category: String!
+  content: String!
+}
+
+type SummonerDTO {
+  accountId: String!
+  profileIconId: Int!
+  revisionDate: Float!
+  name: String!
+  id: String!
+  puuid: String!
+  summonerLevel: Float!
+}
+
+schema {
+  query: Query
+}

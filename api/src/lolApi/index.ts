@@ -1,0 +1,1 @@
+export { LoLApi } from "./instance";

@@ -1,0 +1,48 @@
+type Query {
+  #/lol/league/v4/entries/{queue}/{tier}/{division}
+  dummy(foo: String): String!
+
+  getLeagueEntryBySummonerID(ID: String!): [LeagueEntryDTO!]!
+}
+
+enum Rank {
+  UNRANKED
+  IRON
+  BRONZE
+  SILVER
+  GOLD
+  PLATINUM
+  DIAMOND
+  MASTER
+  GRANDMASTER
+  CHALLENGER
+}
+
+enum QueueType {
+  RANKED_SOLO_5x5
+  RANKED_TEAM_5x5
+}
+
+type LeagueEntryDTO {
+  leagueId: String! #
+  summonerId: String! #	Player's encrypted summonerId.
+  summonerName: String! #
+  queueType: QueueType! #
+  tier: String! #
+  rank: Rank! #	The player's division within a tier.
+  leaguePoints: Int! #
+  wins: Int! #	Winning team on Summoners Rift.
+  losses: Int! #	Losing team on Summoners Rift.
+  hotStreak: Boolean! #
+  veteran: Boolean! #
+  freshBlood: Boolean! #
+  inactive: Boolean! #
+  miniSeries: MiniSeriesDTO! #
+}
+
+type MiniSeriesDTO {
+  losses: Int! #
+  progress: String! #
+  target: Int! #
+  wins: Int! #
+}

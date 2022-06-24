@@ -1,0 +1,14 @@
+type Query {
+  getAccountByPUUID(puuid: String!): AccountDto
+  getAccountByRiotID(riotID: String!): AccountDto
+  getActiveShard(game: String!, puuid: String!): ActiveShardDto
+  getMyAccount: AccountDto
+}
+
+type AccountDto {
+  name: String!
+}
+
+type ActiveShardDto {
+  name: String!
+}

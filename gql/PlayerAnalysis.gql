@@ -1,0 +1,37 @@
+type PlayerAnalisys {
+  name: String!
+  ID: String!
+  history: [String!]!
+  createdAt: String!
+  tags: [String!]!
+  rank: String!
+  masteriesChart: [MasteryData!]! # sorted by points, DESC
+  WR: Int!
+  banChart: [BanRate!]! # sorted by ban percentage of all games
+  playedWith: [String!]! # SummonerIDs of players he has been recently playing with more that 2 times
+  matchupChart: [MatchupData!]! # Matchups sorted from the highest winratio to the lowest
+  totalGames: Int! 
+  level: Int!
+}
+
+type MasteryData {
+  championID: String!
+  level: Int!
+  points: Int!
+}
+
+type BanRate {
+  championID: String!
+  percentage: Int!
+}
+
+type MatchupData {
+  WR: Int!
+  withChampionID: Int!
+  againstChampionID: Int!
+  played: Int!
+}
+
+type Query {
+  getPlayerAnalysisByID(ID: String!): PlayerAnalisys
+}

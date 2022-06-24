@@ -1,0 +1,3 @@
+# .graphqlrc.yml
+schema: "schema.gql"
+documents: ./gql/Queries.gql

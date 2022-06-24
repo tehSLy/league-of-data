@@ -1,0 +1,1 @@
+export { MatchDataResolver } from "./MatchDataResolver";

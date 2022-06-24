@@ -1,0 +1,83 @@
+query getActiveGameBySummonerID($summonerID: String!) {
+  getActiveGameBySummonerID(summonerID: $summonerID) {
+    gameId
+    participants {
+      championId
+      summonerName
+      summonerId
+      teamId
+    }
+    gameType
+    gameStartTime
+  }
+}
+
+query getActiveGameBySummonerName($name: String!) {
+  getActiveGameBySummonerName(name: $name) {
+    gameId
+    participants {
+      championId
+      summonerName
+      summonerId
+      teamId
+    }
+    gameType
+    gameStartTime
+  }
+}
+
+query getSummonerByName($name: String!) {
+  getSummonerByName(name: $name) {
+    accountId
+    profileIconId
+    revisionDate
+    name
+    id
+    puuid
+    summonerLevel
+  }
+}
+
+query getSummonerByID($ID: String!) {
+  getSummonerByID(ID: $ID) {
+    accountId
+    profileIconId
+    revisionDate
+    name
+    id
+    puuid
+    summonerLevel
+  }
+}
+
+query getCurrentMatchBySummonerID($ID: String!) {
+  getCurrentMatchBySummonerID(ID: $ID) {
+    participants {
+      name
+      ID
+      history
+      createdAt
+      tags
+      rank
+      masteriesChart {
+        championID
+        level
+        points
+      }
+      WR
+      banChart {
+        championID
+        percentage
+      }
+      playedWith
+      matchupChart {
+        WR
+        withChampionID
+        againstChampionID
+        played
+      }
+      totalGames
+      level
+    }
+  }
+}

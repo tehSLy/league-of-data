@@ -1,0 +1,21 @@
+# GET /lol/summoner/v4/summoners/by-account/{encryptedAccountId}Get a summoner by account ID.
+# GET /lol/summoner/v4/summoners/by-name/{summonerName}Get a summoner by summoner name.
+# GET /lol/summoner/v4/summoners/by-puuid/{encryptedPUUID}Get a summoner by PUUID.
+# GET /lol/summoner/v4/summoners/{encryptedSummonerId}Get a summoner by summoner ID.
+# GET /lol/summoner/v4/summoners/me
+
+type Query {
+  getSummonerByAccountID(encryptedAccountId: String!): SummonerDTO
+  getSummonerByName(name: String!): SummonerDTO
+  getSummonerByID(ID: String!): SummonerDTO
+}
+
+type SummonerDTO {
+  accountId: String! #	Encrypted account ID. Max length 56 characters.
+  profileIconId: Int! #	ID of the summoner icon associated with the summoner.
+  revisionDate: Float! #	Date summoner was last modified specified as epoch milliseconds. The following events will update this timestamp: summoner name change, summoner level change, or profile icon change.
+  name: String! #	Summoner name.
+  id: String! #	Encrypted summoner ID. Max length 63 characters.
+  puuid: String! #	Encrypted PUUID. Exact length of 78 characters.
+  summonerLevel: Float! #	Summoner level associated with the summoner.
+}

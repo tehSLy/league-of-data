@@ -1,0 +1,7 @@
+type Query {
+  getCurrentMatchBySummonerID(ID: String!): MatchData
+}
+
+type MatchData {
+  participants: [[PlayerAnalisys!]!]!
+}

@@ -1,0 +1,25 @@
+type Query {
+  #/lol/champion-mastery/v4/champion-masteries/by-summoner/{encryptedSummonerId}
+  getAllMasteriesBySummonerID(summonerID: String!): [ChampionMasteryDto!]!
+
+  #/lol/champion-mastery/v4/champion-masteries/by-summoner/{encryptedSummonerId}/by-champion/{championId}
+  getChampionMasteryBySummonerID(
+    summonerID: String!
+    championID: String!
+  ): ChampionMasteryDto
+
+  #/lol/champion-mastery/v4/scores/by-summoner/{encryptedSummonerId}
+  getTotalMasteryPointsBySummonerID: Int!
+}
+
+type ChampionMasteryDto {
+  championPointsUntilNextLevel: Float!
+  chestGranted: Boolean!
+  championId: Float!
+  lastPlayTime: Float!
+  championLevel: Int!
+  summonerId: String!
+  championPoints: Int!
+  championPointsSinceLastLevel: Float!
+  tokensEarned: Int!
+}
