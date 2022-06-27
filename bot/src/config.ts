@@ -1,9 +1,9 @@
-import dotenv from "dotenv";
-
 type Config = {
-    BOT_API_KEY: string;
-    API_URL: string;
-    WEB_APP_URL: string;
-}
+  BOT_KEY: string;
+  API_PORT: string;
+  API_DOMAIN: string;
+  APP_URL: string;
+  GENERATED_OUTPUT: string;
+};
 
-export const config = dotenv.config().parsed as Config;
+export const config = process.env as Config;

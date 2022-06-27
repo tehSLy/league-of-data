@@ -6,7 +6,9 @@ import { cache } from "./utils/cache";
 import { parseMessage } from "./utils/commandMiddleware";
 
 const startApp = async () => {
-  const bot = new Telegraf(config.BOT_API_KEY);
+  console.log("foo!");
+
+  const bot = new Telegraf(config.BOT_KEY);
 
   await cache.init();
   await registerBot(bot);
@@ -43,7 +45,7 @@ const registerBot = async (bot: Telegraf<Context<Update>>) => {
   await bot.telegram.setChatMenuButton({
     menuButton: {
       web_app: {
-        url: config.WEB_APP_URL,
+        url: config.APP_URL,
       },
       text: "Open App",
       type: "web_app",
