@@ -9,7 +9,7 @@ export const watch = async <C extends Context>(
   commandData: CommandData
 ) => {
   const user = ctx.message.from.id;
-  console.log(commandData.args);
+  console.log(user);
 
   const req = await gqlClient.query({
     query: GetSummonerByNameDocument,

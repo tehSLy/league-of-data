@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev -T src/server.ts",
-    "start": "ts-node src/server.ts"
+    "dev": "ts-node-dev --poll --respawn -T src/server.ts",
+    "start": "ts-node -T src/server.ts"
   },
   "author": "",
   "license": "ISC",

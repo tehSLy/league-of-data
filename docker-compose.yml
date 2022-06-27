@@ -1,0 +1,29 @@
+version: "3"
+services:
+  api:
+    image: node
+    build: ./api/
+    ports:
+      - "${API_PORT}:${API_PORT}"
+    volumes:
+      - ./api/:/api/
+      - /api/node_modules
+    environment:
+      - API_PORT
+      - API_KEY
+      - GENERATED_OUTPUT
+  bot:
+    image: node
+    build: ./bot/
+    volumes:
+      - ./bot/:/bot/
+      - /bot/node_modules
+    environment:
+      - BOT_KEY
+      - API_PORT
+      - API_DOMAIN
+      - APP_URL
+      - GENERATED_OUTPUT
+networks:
+  app_network:
+    driver: bridge

@@ -6,7 +6,12 @@
   "scripts": {
     "generate": "graphql-codegen --config codegen.yml",
     "make-schema": "node mergeSchemas.js",
-    "codegen": "npm run make-schema & npm run generate"
+    "codegen": "npm run make-schema & npm run generate",
+    "start-api": "cd api && npm run dev",
+    "start-bot": "cd bot && npm run dev",
+    "publish-app": "cd app && npm run deploy",
+    "start": "docker-compose up",
+    "rebuild": "docker-compose up --build"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.6.2",

@@ -18,7 +18,7 @@ async function startApolloServer() {
   const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
-    csrfPrevention: true,
+    csrfPrevention: false,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
   await cache.init();
@@ -26,10 +26,10 @@ async function startApolloServer() {
   server.applyMiddleware({ app });
 
   await new Promise<void>((resolve) =>
-    httpServer.listen({ port: config.PORT }, resolve)
+    httpServer.listen({ port: config.API_PORT }, resolve)
   );
-  console.log(`The server has been started on http://localhost:${config.PORT}`);
-  console.log(`Apollo client is available at http://localhost:${config.PORT}/graphql`);
+  console.log(`The server has been started on http://localhost:${config.API_PORT}`);
+  console.log(`Apollo client is available at http://localhost:${config.API_PORT}/graphql`);
 }
 
 startApolloServer();

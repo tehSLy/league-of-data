@@ -4,7 +4,7 @@ import {
   mergeResolvers,
   QueryResolvers,
 } from "./createResolver";
-import { MatchDataResolver } from "./matchData";
+import { MatchDataResolver } from "./MatchData";
 import { PlayerAnalysisResolver } from "./PlayerAnalysis/PlayerAnalysisResolver";
 
 const getSummonerByName = createResolver<QueryResolvers["getSummonerByName"]>(

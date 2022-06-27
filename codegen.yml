@@ -10,6 +10,7 @@ generates:
     plugins:
       - "typescript"
       - "typescript-operations"
+      - "typed-document-node"
   bot/src/generated/graphql.ts:
     plugins:
       - "typescript"
