@@ -1,10 +1,20 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import axiosRetry from "axios-retry";
 import { handleResponse } from "./handleResponse";
-
 export class HTTPClient {
   private instance: AxiosInstance;
   constructor(config?: AxiosRequestConfig) {
     this.instance = axios.create(config);
+
+    axiosRetry(this.instance, {
+      retries: 4,
+      retryDelay: (retryCount) => {
+        return retryCount * 2000;
+      },
+      retryCondition: (error) => {
+        return error?.response?.status === 429;
+      },
+    });
   }
 
   get = <T>(...args: Parameters<typeof this.instance["get"]>) =>

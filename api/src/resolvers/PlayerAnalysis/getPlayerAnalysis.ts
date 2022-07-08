@@ -9,6 +9,14 @@ export const getPlayerAnalysis = async ({
 }) => {
   const leagueInfo = await LoLApi.league.getLeagueEntryBySummonerID(ID);
   const summonerInfo = await LoLApi.summoner.getBySummonerID(ID);
+  const matchHistoryIds = await LoLApi.match.getIDsByPUUID(summonerInfo.puuid, {
+    count: 20,
+  });
+  const matchHistory = await resolveMatchHistory({
+    ids: matchHistoryIds,
+  });
+
+  console.log(matchHistory);
 
   const response = {
     banChart: [],
@@ -54,3 +62,11 @@ const resolveSoloQ = (DTOs: LeagueEntryDto[] = []) => {
   const soloq = DTOs.find((dto) => dto.queueType === QueueType.RankedSolo_5x5);
   return soloq;
 };
+
+
+const resolveMatchHistory = ({ids, chunkSize = 10, delay = 1000}: {ids: string[], chunkSize?: number, delay?: number}) => {
+  const queue = 
+  await Promise.all(
+    matchHistoryIds.map((id) => LoLApi.match.getMatchByID(id))
+  );
+}

@@ -1,5 +1,6 @@
 import { PlayerAnalisys } from "../../generated/graphql";
 import { LoLApi } from "../../lolApi";
+import { delay } from "../../utils/delay";
 import { createResolver, QueryResolvers } from "../createResolver";
 import { getPlayerAnalysis } from "../PlayerAnalysis/getPlayerAnalysis";
 
@@ -11,7 +12,6 @@ export const MatchDataResolver = createResolver<
   const response = {
     participants: [],
   };
-
   if (match) {
     const participantsByTeams = {} as Record<string, PlayerAnalisys[]>;
     for (const participant of match.participants) {
@@ -22,6 +22,7 @@ export const MatchDataResolver = createResolver<
         participantsByTeams[participant.teamId] = [];
       }
       participantsByTeams[participant.teamId].push(playerData);
+      await delay(1000);
     }
 
     Object.assign(response, {

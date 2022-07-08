@@ -12,6 +12,8 @@ services:
       - API_PORT
       - API_KEY
       - GENERATED_OUTPUT
+      - MONGODB_USER
+      - MONGODB_PASSWORD
   bot:
     container_name: BOT
     build: ./bot/
@@ -24,6 +26,26 @@ services:
       - API_DOMAIN
       - APP_URL
       - GENERATED_OUTPUT
+
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - ./mongodb/db:/data/db
+      - ./mongodb/configdb:/data/configdb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - "${MONGODB_PORT}:${MONGODB_PORT}"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGODB_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGODB_PASSWORD}
+      ME_CONFIG_MONGODB_SERVER: mongo
 networks:
   app_network:
     driver: bridge
